@@ -1,0 +1,29 @@
+
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: order-service-route
+          uri: ${services.base-url}:8081
+          predicates:
+            - Path=/orders, /admin/orders
+
+        - id: product-service
+          uri: ${services.base-url}:8082
+          predicates:
+            - Path=/products
+
+services:
+  base-url: http://localhost
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG

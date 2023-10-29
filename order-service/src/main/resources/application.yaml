@@ -1,0 +1,20 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: order-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt.jwk-set-uri: http://localhost:8090/auth/realms/pres/protocol/openid-connect/certs
+  h2:
+    console.enabled: false
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+debug: true
