@@ -3,6 +3,7 @@ package com.pres.order.controllers;
 import com.pres.order.models.CreateOrderDTO;
 import com.pres.order.models.OrderDTO;
 import com.pres.order.services.OrderService;
+import com.pres.order.utils.TokenUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -29,12 +30,12 @@ public class OrderController {
     OrderDTO createOrder(@AuthenticationPrincipal Jwt user,
                          @RequestBody CreateOrderDTO createOrderDTO) {
         log.info("Create order request [{}]", user.getId());
-        return orderService.create(UUID.fromString(user.getId()), createOrderDTO);
+        return orderService.create(TokenUtils.getUserId(user), createOrderDTO);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<OrderDTO> getOrders(@AuthenticationPrincipal Jwt user) {
-        return orderService.findUserOrders(UUID.fromString(user.getId()));
+        return orderService.findUserOrders(TokenUtils.getUserId(user));
     }
 }
