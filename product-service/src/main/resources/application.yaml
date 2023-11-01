@@ -7,6 +7,9 @@ spring:
   security:
     oauth2:
       resourceserver:
-        jwt.jwk-set-uri: http://localhost:8090/auth/realms/pres/protocol/openid-connect/certs
+        jwt:
+          jwk-set-uri: http://localhost:8080/oauth2/jwks
 
-debug: true
+logging:
+  level:
+    org.springframework.security: TRACE

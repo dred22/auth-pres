@@ -6,7 +6,7 @@ spring:
   security:
     oauth2:
       resourceserver:
-        jwt.jwk-set-uri: http://localhost:8090/auth/realms/pres/protocol/openid-connect/certs
+        jwt.jwk-set-uri: http://localhost:8080/oauth2/jwks
   h2:
     console.enabled: false
   datasource:
@@ -17,4 +17,6 @@ spring:
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 
-debug: true
+logging:
+  level:
+    org.springframework.security: TRACE

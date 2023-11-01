@@ -17,6 +17,11 @@ spring:
           predicates:
             - Path=/products
 
+        - id: oidc-service
+          uri: ${services.base-url}:9000
+          predicates:
+            - Path=/oauth2/**, /login
+
 services:
   base-url: http://localhost
 
